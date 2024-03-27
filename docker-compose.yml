@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   backend:
-    image: 'spring-project'
+    image: 'springboot-backend:latest'
     container_name: SpringBootSecurityJWT
     restart: always
     ports:
