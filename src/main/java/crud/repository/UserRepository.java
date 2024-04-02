@@ -15,7 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> getByEmail(String email);
 
     default User findByEmail(String email){
-       return getByEmail(email).orElseThrow(() -> new NoSuchElementException("User with email: " + " not exists"));
+       return getByEmail(email).orElseThrow(() ->
+               new NoSuchElementException("User with email: " + " not exists"));
     }
 
     boolean existsByEmail(String email);
