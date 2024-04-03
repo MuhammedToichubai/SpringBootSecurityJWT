@@ -2,7 +2,7 @@ version: "3.9"
 services:
   backend:
     image: '#image'
-    container_name: healthcheck
+    container_name: springbootsecurityjwt
     restart: always
     ports:
       - "80:2024"
@@ -32,8 +32,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: healthcheckuser
-      POSTGRES_PASSWORD: healthcheck11
+      POSTGRES_USER: meuser
+      POSTGRES_PASSWORD: meuser
     volumes:
       - db_data:/var/lib/postgresql/data
 volumes:
