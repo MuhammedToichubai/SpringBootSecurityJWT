@@ -10,4 +10,3 @@ COPY --from=build /app/build/libs/SpringBootSecurityJWT-0.0.1-SNAPSHOT.jar .
 CMD ["java", "-jar", "SpringBootSecurityJWT-0.0.1-SNAPSHOT.jar"]
 EXPOSE 2024
 
-
