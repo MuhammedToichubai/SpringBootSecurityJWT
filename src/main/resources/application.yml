@@ -4,9 +4,9 @@ spring:
 
     datasource:
         driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://localhost:5434/deployment
+        url: jdbc:postgresql://localhost:5454/test
         username: postgres
-        password: yiman
+        password: postgres
 
     jpa:
         hibernate:
@@ -16,7 +16,7 @@ spring:
 server:
     error:
         include-stacktrace: always
-    port: 9797
+    port: 9790
 app:
     jwt:
         secret: mukhammed.codes

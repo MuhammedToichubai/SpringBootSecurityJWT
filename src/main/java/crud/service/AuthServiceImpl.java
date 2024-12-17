@@ -6,6 +6,7 @@ import crud.dto.request.LoginRequest;
 import crud.dto.request.RegisterRequest;
 import crud.dto.response.LoginResponse;
 import crud.dto.response.RegisterResponse;
+import crud.dto.response.UserResponse;
 import crud.models.Role;
 import crud.models.User;
 import crud.repository.UserRepository;
@@ -13,6 +14,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-@Slf4j
+@Slf4j // Simple logging facade java
 public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -84,5 +86,25 @@ public class AuthServiceImpl implements AuthService {
                 .email(user.getEmail())
                 .role(user.getRole())
                 .build();
+    }
+
+    @Override
+    public ResponseEntity<UserResponse> findById(Long userId) {
+        User user = userRepo.findByOrThrow(userId);
+
+//        if (user == null) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                    .body(null); // Responding with 404 if user is not found
+//        }
+
+        return ResponseEntity.ok(
+                UserResponse.builder()
+                        .id(user.getId())
+                        .name(user.getName())
+                        .email(user.getEmail())
+                        .role(user.getRole())
+                        .phoneNumber(user.getPhoneNumber())
+                        .build()
+        );
     }
 }

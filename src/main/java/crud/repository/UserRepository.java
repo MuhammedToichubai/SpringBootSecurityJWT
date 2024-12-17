@@ -1,5 +1,6 @@
 package crud.repository;
 
+import crud.excepitons.NotFoundException;
 import crud.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,4 +22,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByEmail(String email);
 
+    default User findByOrThrow(Long userId){
+        return findById(userId).orElseThrow(() ->
+                new NotFoundException("User with id: " + userId + " not exists"));
+    }
 }
